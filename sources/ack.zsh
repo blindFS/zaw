@@ -6,7 +6,7 @@
 
 zmodload zsh/parameter
 
-if ! (( $+commands[ack] )); then
+if ! (( $+commands[ack-grep] )); then
     # ack not found
     return
 fi
@@ -34,7 +34,7 @@ function zaw-src-ack() {
     }
 
     if [[ "${ret}" == 0 ]]; then
-        ack --group "${(Q@)${(z)REPLY}}" | \
+        ack-grep --group "${(Q@)${(z)REPLY}}" | \
             while read f; do
                 while read line; do
                     if [[ -z "${line}" ]]; then

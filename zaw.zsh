@@ -193,7 +193,7 @@ function zaw-callback-append-to-buffer() {
 function zaw-callback-edit-file() {
     local -a args
     args=("${(@q)@}")
-    BUFFER="${EDITOR} ${args}"
+    BUFFER="gvim ${args}"
     zle accept-line
 }
 
@@ -210,7 +210,5 @@ fi
 function select-action() {}; zle -N select-action
 filter-select -i
 bindkey -M filterselect '^i' select-action
-
-bindkey '^X;' zaw
 
 }
