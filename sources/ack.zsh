@@ -16,7 +16,7 @@ autoload -U read-from-minibuffer
 function zaw-src-ack() {
     local ack_args REPLY f line ret
     local -a ack_history
-    ack_history=( "${(@)${(f)"$(fc -l -n -m "ack --group *" 0 -1)"}#ack --group }" )
+    ack_history=( "${(@)${(f)"$(fc -l -n -m "ack *" 0 -1)"}#ack }" )
 
     function() {
         local HISTNO
@@ -29,12 +29,16 @@ function zaw-src-ack() {
             (( histno++ ))
         done
         HISTNO="${histno}"
-        read-from-minibuffer "ack --group "
+        read-from-minibuffer "ack "
         ret=$?
     }
 
     if [[ "${ret}" == 0 ]]; then
+<<<<<<< HEAD
         ack-grep --group "${(Q@)${(z)REPLY}}" | \
+=======
+        ack --group --nocolor "${(Q@)${(z)REPLY}}" | \
+>>>>>>> 62175d3549d815ca839ebfdba05373fdf0089f8b
             while read f; do
                 while read line; do
                     if [[ -z "${line}" ]]; then
@@ -45,7 +49,7 @@ function zaw-src-ack() {
                 done
             done
 
-        print -s -r -- "ack --group ${REPLY}"
+        print -s -r -- "ack ${REPLY}"
 
         actions=("zaw-callback-edit-file" "zaw-callback-append-to-buffer")
         act_descriptions=("edit file" "append to edit buffer")
