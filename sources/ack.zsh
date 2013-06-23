@@ -34,11 +34,8 @@ function zaw-src-ack() {
     }
 
     if [[ "${ret}" == 0 ]]; then
-<<<<<<< HEAD
-        ack-grep --group "${(Q@)${(z)REPLY}}" | \
-=======
+        # ack-grep --group "${(Q@)${(z)REPLY}}" | \
         ack --group --nocolor "${(Q@)${(z)REPLY}}" | \
->>>>>>> 62175d3549d815ca839ebfdba05373fdf0089f8b
             while read f; do
                 while read line; do
                     if [[ -z "${line}" ]]; then
